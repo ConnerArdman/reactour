@@ -47,8 +47,6 @@ Arrow.propTypes = {
 }
 
 export default styled(Arrow)`
-  color: ${props => (props.disabled ? '#caccce' : '#646464')};
-
   ${props => (props.inverted ? 'margin-left: 24px;' : 'margin-right: 24px;')};
   ${props =>
     !props.label &&
