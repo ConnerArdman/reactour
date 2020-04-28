@@ -377,6 +377,7 @@ class Tour extends Component {
       CustomHelper,
       disableFocusLock,
       highlightedBorder,
+      dotClick
     } = this.props
 
     const {
@@ -509,7 +510,11 @@ class Tour extends Component {
                           {steps.map((s, i) => (
                             <Dot
                               key={`${s.selector ? s.selector : 'undef'}_${i}`}
-                              onClick={() => this.gotoStep(i)}
+                              onClick={
+                                typeof dotClick === 'function'
+                                  ? () => dotClick(i)
+                                  : () => this.gotoStep(i)
+                                }
                               current={current}
                               index={i}
                               accentColor={accentColor}
