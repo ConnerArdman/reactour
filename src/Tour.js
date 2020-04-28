@@ -265,7 +265,8 @@ function Tour({
         })
       : steps[current].content)
 
-  const forceDisabledArrow = steps[current].disabled != null ? steps[current].disabled : false;
+  const forceDisabledArrowRight = steps[current].disabledRight != null ? steps[current].disabledRight : false;
+  const forceDisabledArrowLeft = steps[current].disabledLeft != null ? steps[current].disabledLeft : false;
 
   return isOpen ? (
     <Portal>
@@ -345,7 +346,7 @@ function Tour({
                   {showButtons && (
                     <Arrow
                       onClick={prevStep}
-                      disabled={forceDisabledArrow || current === 0}
+                      disabled={forceDisabledArrowLeft || current === 0}
                       label={prevButton ? prevButton : null}
                     />
                   )}
@@ -385,7 +386,7 @@ function Tour({
                           : this.nextStep
                       }
                       disabled={
-                        forceDisabledArrow || (!lastStepNextButton && current === steps.length - 1)
+                        forceDisabledArrowRight || (!lastStepNextButton && current === steps.length - 1)
                       }
                       inverted
                       label={
