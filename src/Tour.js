@@ -63,6 +63,9 @@ function Tour({
     ...accessibilityOptions,
   }
 
+  const forceDisabledArrowRight = steps[current].disabledRight != null ? steps[current].disabledRight : false;
+  const forceDisabledArrowLeft = steps[current].disabledLeft != null ? steps[current].disabledLeft : false;
+
   useMutationObserver(observer, (mutationList, observer) => {
     if (isOpen) {
       showStep()
@@ -264,9 +267,6 @@ function Tour({
           step: current + 1,
         })
       : steps[current].content)
-
-  const forceDisabledArrowRight = steps[current].disabledRight != null ? steps[current].disabledRight : false;
-  const forceDisabledArrowLeft = steps[current].disabledLeft != null ? steps[current].disabledLeft : false;
 
   return isOpen ? (
     <Portal>
