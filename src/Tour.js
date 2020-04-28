@@ -398,6 +398,9 @@ class Tour extends Component {
     } = this.state
 
     if (isOpen) {
+      const forceDisabledArrowRight = steps[current].disabledRight != null ? steps[current].disabledRight : false;
+      const forceDisabledArrowLeft = steps[current].disabledLeft != null ? steps[current].disabledLeft : false;
+
       return (
         <Portal>
           <GlobalStyle />
@@ -496,7 +499,7 @@ class Tour extends Component {
                               ? prevStep
                               : this.prevStep
                           }
-                          disabled={current === 0}
+                          disabled={forceDisabledArrowLeft || current === 0}
                           label={prevButton ? prevButton : null}
                         />
                       )}
@@ -534,7 +537,7 @@ class Tour extends Component {
                               : this.nextStep
                           }
                           disabled={
-                            !lastStepNextButton && current === steps.length - 1
+                            forceDisabledArrowRight || (!lastStepNextButton && current === steps.length - 1)
                           }
                           inverted
                           label={
